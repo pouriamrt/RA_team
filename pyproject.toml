@@ -1,0 +1,17 @@
+[project]
+name = "my-agents-crew"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "agno>=2.0.3",
+    "crawl4ai>=0.7.4",
+    "duckduckgo-search>=8.1.1",
+    "hackernews>=2.0.0",
+    "pygithub>=2.8.1",
+    "python-dotenv>=1.1.1",
+    "resend>=2.13.1",
+    "streamlit>=1.49.1",
+    "youtube-transcript-api>=1.2.2",
+]
