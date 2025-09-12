@@ -1,5 +1,5 @@
 import streamlit as st
-from create_team import initialize_team
+from agents.create_team import initialize_team
 import time
 from dotenv import load_dotenv
 import os
