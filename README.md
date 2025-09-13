@@ -5,7 +5,7 @@ This project coordinates a team of specialist AI agents—each with dedicated to
 
 The agents collaborate under a **Team Coordinator** that delegates tasks, manages memory, and synthesizes results into clear, well-formatted answers.
 
----
+--- 
 
 ## 🚀 Features
 
