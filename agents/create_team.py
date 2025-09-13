@@ -1,7 +1,7 @@
 from agno.team import Team
-from all_agents import search_agent, crawler_agent, youtube_agent, email_agent, github_agent, hackernews_agent, general_agent, db
+from .all_agents import search_agent, crawler_agent, youtube_agent, email_agent, github_agent, hackernews_agent, general_agent, db
 
-def initialize_team(model):
+def initialize_team(model, session_state):
     """Initializes or re-initializes the research assistant team."""
     return Team(
         name="ResearchAssistantTeam",
@@ -34,6 +34,7 @@ def initialize_team(model):
             "Avoid mentioning the function calls in the final response and make the final response beautifully formatted as well."
         ],
         db=db,
+        session_state=session_state,
         expected_output="The user's query has been thoroughly answered with information from all relevant specialists.",
         enable_agentic_state=True,      # The coordinator retains its own context between turns
         share_member_interactions=True, # All agents see each other's outputs as context
@@ -44,5 +45,6 @@ def initialize_team(model):
         markdown=True,
         add_member_tools_to_context=True,
         add_history_to_context=True,    # Maintain a shared history (memory) between coordinator and members
-        num_history_runs=5              # Limit how much history is shared (to last 5 interactions)
+        num_history_runs=5,             # Limit how much history is shared (to last 5 interactions)
+        add_session_state_to_context=True
     )

@@ -4,6 +4,12 @@ import time
 from dotenv import load_dotenv
 import os
 from agno.models.openai import OpenAIChat
+import asyncio
+import sys
+
+if sys.platform == "win32":
+    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+
 
 load_dotenv(override=True)
 
@@ -18,7 +24,7 @@ if "team" not in st.session_state:
     if "messages" not in st.session_state:
         st.session_state.messages = []
         
-    st.session_state.team = initialize_team(model)
+    st.session_state.team = initialize_team(model, st.session_state)
 
 st.title("Research Assistant Team")
 st.markdown("""
@@ -126,7 +132,7 @@ with st.sidebar:
     if st.button("Clear Chat & Reset Team"):
         st.session_state.messages = []
         st.session_state.team_session_id = f"streamlit-team-session-{int(time.time())}"
-        st.session_state.team = initialize_team(model)  # start a fresh team instance
+        st.session_state.team = initialize_team(model, st.session_state)  # start a fresh team instance
         if "memory_dump" in st.session_state:
             del st.session_state.memory_dump
         if "tool_logs" in st.session_state:
